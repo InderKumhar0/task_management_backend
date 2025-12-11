@@ -62,7 +62,6 @@ const handleZodError = (err: ZodError | any): AppError => {
 };
 
 const handlePrismaError = (err: any): AppError => {
-  console.log('FROM PRISMA ERROR HANDLER', err);
   const formattedErrors: Record<string, string> = {};
   if (err.code === 'P2002') {
     const field =
@@ -132,8 +131,6 @@ const globalErrorHandler = (
   } else if (process.env.NODE_ENV === 'production') {
     let error = { ...err };
     error.message = err.message;
-
-    console.log(err);
 
     if (
       err instanceof ZodError ||
